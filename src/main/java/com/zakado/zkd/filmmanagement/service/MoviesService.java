@@ -21,5 +21,5 @@ public interface MoviesService {
 
     List<MoviesRequest> searchMoviesByYear(Integer year);
 
-    List<MoviesRequest> searchMoviesByGenre(String genre);
+    //List<MoviesRequest> searchMoviesByGenre(String genre);
 }

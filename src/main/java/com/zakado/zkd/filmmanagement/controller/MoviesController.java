@@ -36,11 +36,11 @@ public class MoviesController {
         return new ResponseEntity<>(moviesDTOS, HttpStatus.OK);
     }
 
-    @GetMapping("/genre/{genre}")
+    /*@GetMapping("/genre/{genre}")
     public ResponseEntity<List<MoviesRequest>> searchMoviesByGenre(@PathVariable("genre") final String genre) {
         List<MoviesRequest> moviesDTOS = moviesService.searchMoviesByGenre(genre);
         return new ResponseEntity<>(moviesDTOS, HttpStatus.OK);
-    }
+    }*/
 
     @GetMapping("/year/{year}")
     public ResponseEntity<List<MoviesRequest>> searchMoviesByYear(@PathVariable("year") final Integer year) {

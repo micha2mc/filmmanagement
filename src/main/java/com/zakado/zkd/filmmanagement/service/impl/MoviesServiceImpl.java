@@ -43,10 +43,9 @@ public class MoviesServiceImpl implements MoviesService {
                 Movie movieTemp = movieByTitle.stream()
                         .filter(pel -> FilmManagementUtils.removeSpace(pel.getTitle())
                                 .equalsIgnoreCase(FilmManagementUtils.removeSpace(strTitle))
-                                && pel.getStatus().equalsIgnoreCase("N")).findFirst().orElse(null);
+                        ).findFirst().orElse(null);
 
                 assert movieTemp != null;
-                movieTemp.setStatus("A");
                 moviesRequest = FilmManagementUtils.entityToMovieRequest(moviesDAO.saveMovie(movieTemp));
             } else {
                 Movie movie = moviesDAO.saveMovie(FilmManagementUtils.movieRequestToEntity(moviesRequest));
@@ -90,7 +89,6 @@ public class MoviesServiceImpl implements MoviesService {
         movie.setYear(moviesRequest.getYear());
         movie.setDuration(moviesRequest.getDuration());
         movie.setCountry(moviesRequest.getCountry());
-        movie.setGenre(moviesRequest.getGenre());
         movie.setSynopsis(moviesRequest.getSynopsis());
         movie.setImage(moviesRequest.getImage());
         return movie;
@@ -115,10 +113,7 @@ public class MoviesServiceImpl implements MoviesService {
         if (!actorsEntities.isEmpty()) {
             for (Actor actor : actorsEntities) {
                 for (Movie movie : actor.getMoviesEntities()) {
-                    if ("A".equalsIgnoreCase(movie.getStatus())) {
-                        allMovies.add(movie);
-                    }
-
+                    allMovies.add(movie);
                 }
             }
         }
@@ -131,18 +126,17 @@ public class MoviesServiceImpl implements MoviesService {
         return getListMoviesSorted(moviesEntities);
     }
 
-    @Override
+    /*@Override
     public List<MoviesRequest> searchMoviesByGenre(String genre) {
         Set<Movie> moviesEntities = moviesDAO.searchMoviesByGenre(genre);
         log.info("{} películas encontradas.", moviesEntities.size());
         return getListMoviesSorted(moviesEntities);
-    }
+    }*/
 
     @Override
     public void deleteMovie(Integer idPeli) {
         Movie movie = moviesDAO.searchMovieById(idPeli);
         if (Objects.nonNull(movie)) {
-            movie.setStatus("N");
             moviesDAO.saveMovie(movie);
             log.info("Película eliminada con éxito");
         } else {
@@ -159,7 +153,6 @@ public class MoviesServiceImpl implements MoviesService {
     private boolean isNotPresent(Set<Movie> movieByTitle, String title) {
 
         return movieByTitle.stream().anyMatch(pel -> FilmManagementUtils.removeSpace(pel.getTitle())
-                .equalsIgnoreCase(FilmManagementUtils.removeSpace(title))
-                && pel.getStatus().equalsIgnoreCase("N"));
+                .equalsIgnoreCase(FilmManagementUtils.removeSpace(title)));
     }
 }

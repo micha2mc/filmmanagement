@@ -19,22 +19,23 @@ public class ActorsServiceImpl implements ActorsService {
 
     private final ActorsDAO actorsDAO;
 
-    @Override
+    /*@Override
     public ActorRequest searchActorByDNI(String dni) {
         Actor actor = actorsDAO.searchActorByDNI(dni).orElse(null);
         assert actor != null;
         return FilmManagementUtils.entityToActorRequest(actor);
-    }
+    }*/
 
     @Override
     public ActorRequest updateActor(ActorRequest actor) {
-        Optional<Actor> actorsTemp = actorsDAO.searchActorByDNI(actor.getDni());
-        if (actorsTemp.isPresent() && actorsTemp.get().getDni().equalsIgnoreCase(actor.getDni())) {
+        return actor;
+        /*Optional<Actor> actorsTemp = actorsDAO.searchActorByDNI(actor.getDni());
+        if (actorsTemp.isPresent()) {
             Actor actor1 = actorsDAO.updateActor(actorsTemp.get());
             return FilmManagementUtils.entityToActorRequest(actor1);
         } else {
             throw new RuntimeException("No existe actor para actualizar");
-        }
+        }*/
     }
 
     @Override
@@ -45,7 +46,6 @@ public class ActorsServiceImpl implements ActorsService {
             for (Movie movies : moviesEntities) {
                 movies.removeActor(actor);
             }
-            actor.setStatus("N");
             actorsDAO.saveActor(actor);
             log.info("Actor con id {} eliminado.", actor.getNid());
         }
@@ -60,16 +60,15 @@ public class ActorsServiceImpl implements ActorsService {
 
     @Override
     public ActorRequest saveActor(ActorRequest actorRequest) {
-        Actor actorSaved;
+        Actor actorSaved = null;
         Actor actor = FilmManagementUtils.actorRequestToEntity(actorRequest);
-        Optional<Actor> actorPorDNI = actorsDAO.searchActorByDNI(actor.getDni());
+        /*Optional<Actor> actorPorDNI = actorsDAO.searchActorByDNI(actor.getDni());
         if (actorPorDNI.isEmpty()) {
             actorSaved = actorsDAO.saveActor(actor);
         } else {
             Actor actor1 = actorPorDNI.get();
-            actor1.setStatus("A");
             actorSaved = actorsDAO.updateActor(actor1);
-        }
+        }*/
         return FilmManagementUtils.entityToActorRequest(actorSaved);
     }
 

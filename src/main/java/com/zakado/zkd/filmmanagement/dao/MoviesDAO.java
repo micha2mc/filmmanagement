@@ -13,5 +13,4 @@ public interface MoviesDAO {
 
     Set<Movie> searchMoviesByYear(Integer year);
 
-    Set<Movie> searchMoviesByGenre(String genre);
 }

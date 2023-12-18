@@ -26,9 +26,6 @@ public class Actor {
     @Column(name = "name")
     private String name;
     @Basic
-    @Column(name = "dni")
-    private String dni;
-    @Basic
     @Column(name = "dob")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dob;
@@ -38,9 +35,6 @@ public class Actor {
     @Basic
     @Column(name = "image")
     private String image;
-    @Basic
-    @Column(name = "status")
-    private String status;
     @Basic
     @Column(name = "genre")
     private String genre;
