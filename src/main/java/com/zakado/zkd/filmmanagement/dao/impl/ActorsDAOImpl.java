@@ -14,10 +14,7 @@ import java.util.Optional;
 public class ActorsDAOImpl implements ActorsDAO {
     private final ActorsRepository actorsRepository;
 
-    @Override
-    public Optional<Actor> searchActorByDNI(String dni) {
-        return actorsRepository.findByDni(dni);
-    }
+
 
     @Override
     public Actor updateActor(Actor actor) {
@@ -47,7 +44,7 @@ public class ActorsDAOImpl implements ActorsDAO {
 
     @Override
     public List<Actor> searchAllActors() {
-        return actorsRepository.findByStatus("A");
+        return actorsRepository.findAll();
     }
 
     @Override

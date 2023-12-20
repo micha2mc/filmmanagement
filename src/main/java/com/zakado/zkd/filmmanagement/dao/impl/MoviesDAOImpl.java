@@ -15,8 +15,8 @@ public class MoviesDAOImpl implements MoviesDAO {
     private final MoviesRepository moviesRepository;
 
     @Override
-    public Set<Movie> searchAllMovies() {
-        return moviesRepository.findByStatus("A");
+    public List<Movie> searchAllMovies() {
+        return moviesRepository.findAll();
     }
 
     @Override
@@ -31,19 +31,19 @@ public class MoviesDAOImpl implements MoviesDAO {
     }
 
     @Override
-    public Set<Movie> searchMovieByTitle(String strTitle) {
+    public List<Movie> searchMovieByTitle(String strTitle) {
         return moviesRepository
                 .findByTitleContainingIgnoreCase(strTitle);
     }
 
     @Override
-    public Set<Movie> searchMoviesByYear(Integer year) {
+    public List<Movie> searchMoviesByYear(Integer year) {
         return moviesRepository.findByYear(year);
     }
 
     @Override
-    public Set<Movie> searchMoviesByGenre(String genre) {
-        return moviesRepository.findByGenre(genre);
+    public void deleteMovie(Movie movie) {
+        moviesRepository.delete(movie);
     }
 
 

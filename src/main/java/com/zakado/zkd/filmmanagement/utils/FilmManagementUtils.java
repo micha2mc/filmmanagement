@@ -45,9 +45,7 @@ public class FilmManagementUtils {
         return Actor.builder()
                 .nid(actorRequest.getNid())
                 .name(actorRequest.getName())
-                .dni(actorRequest.getDni())
                 .dob(convertStringToDate(actorRequest.getDob()))
-                .status(StringUtils.hasText(actorRequest.getStatus()) ? actorRequest.getStatus() : "A")
                 .image(actorRequest.getImage())
                 .cob(actorRequest.getCob())
                 .genre(actorRequest.getGenre())
@@ -59,9 +57,7 @@ public class FilmManagementUtils {
         return ActorRequest.builder()
                 .nid(actorSaved.getNid())
                 .name(actorSaved.getName())
-                .dni(actorSaved.getDni())
                 .dob(convertDateToString(actorSaved.getDob()))
-                .status(actorSaved.getStatus())
                 .image(actorSaved.getImage())
                 .cob(actorSaved.getCob())
                 .genre(actorSaved.getGenre())
@@ -76,9 +72,7 @@ public class FilmManagementUtils {
                 .duration(moviesRequest.getDuration())
                 .country(moviesRequest.getCountry())
                 .image(moviesRequest.getImage())
-                .genre(moviesRequest.getGenre())
                 .synopsis(moviesRequest.getSynopsis())
-                .status(StringUtils.hasText(moviesRequest.getStatus()) && !"N".equalsIgnoreCase(moviesRequest.getStatus()) ? moviesRequest.getStatus() : "A")
                 .build();
     }
 
@@ -89,10 +83,8 @@ public class FilmManagementUtils {
                 .year(movie.getYear())
                 .duration(movie.getDuration())
                 .country(movie.getCountry())
-                .genre(movie.getGenre())
                 .image(movie.getImage())
                 .synopsis(movie.getSynopsis())
-                .status(movie.getStatus())
                 .build();
         if (Objects.nonNull(movie.getActors()) && !movie.getActors().isEmpty()) {
             request.setActors(movie.getActors().stream().map(FilmManagementUtils::entityToActorRequest)
