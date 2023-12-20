@@ -18,4 +18,6 @@ public interface ActorsDAO {
     List<Actor> searchAllActors();
 
     List<Actor> searchMoviesByNameActor(String name);
+
+    void deleteActor(Actor actor);
 }

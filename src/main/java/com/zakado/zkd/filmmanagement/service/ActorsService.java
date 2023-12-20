@@ -12,7 +12,7 @@ public interface ActorsService {
 
     void deleteActor(Integer dni);
 
-    ActorRequest searchActorById(Integer id);
+    Actor searchActorById(Integer id);
 
     Actor saveActor(Actor actorDTO);
 

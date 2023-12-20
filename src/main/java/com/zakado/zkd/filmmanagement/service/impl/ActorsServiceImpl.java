@@ -3,14 +3,13 @@ package com.zakado.zkd.filmmanagement.service.impl;
 import com.zakado.zkd.filmmanagement.dao.ActorsDAO;
 import com.zakado.zkd.filmmanagement.model.dto.ActorRequest;
 import com.zakado.zkd.filmmanagement.model.entity.Actor;
-import com.zakado.zkd.filmmanagement.model.entity.Movie;
 import com.zakado.zkd.filmmanagement.service.ActorsService;
-import com.zakado.zkd.filmmanagement.utils.FilmManagementUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -41,21 +40,12 @@ public class ActorsServiceImpl implements ActorsService {
     @Override
     public void deleteActor(Integer id) {
         Actor actor = actorsDAO.searchActorById(id).orElse(null);
-        if (Objects.nonNull(actor)) {
-            Set<Movie> moviesEntities = actor.getMoviesEntities();
-            for (Movie movies : moviesEntities) {
-                movies.removeActor(actor);
-            }
-            actorsDAO.saveActor(actor);
-            log.info("Actor con id {} eliminado.", actor.getNid());
-        }
-        log.info("Actor con id {} no existe.", id);
+        actorsDAO.deleteActor(actor);
     }
 
     @Override
-    public ActorRequest searchActorById(Integer id) {
-        Actor actor = actorsDAO.searchActorById(id).orElse(null);
-        return FilmManagementUtils.entityToActorRequest(actor);
+    public Actor searchActorById(Integer id) {
+        return actorsDAO.searchActorById(id).orElse(null);
     }
 
     @Override
@@ -65,8 +55,7 @@ public class ActorsServiceImpl implements ActorsService {
 
     @Override
     public List<Actor> searchAllActors() {
-        return actorsDAO.searchAllActors();
-        /*return listActors.stream().map(FilmManagementUtils::entityToActorRequest)
-                .sorted(Comparator.comparing(ActorRequest::getName)).toList();*/
+        return actorsDAO.searchAllActors().stream()
+                .sorted(Comparator.comparing(Actor::getName)).toList();
     }
 }

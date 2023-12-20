@@ -29,7 +29,7 @@ public class ActorsController {
     }*/
 
     @GetMapping("/{id}")
-    public ResponseEntity<ActorRequest> searchActorById(@PathVariable("id") final Integer id) {
+    public ResponseEntity<Actor> searchActorById(@PathVariable("id") final Integer id) {
         return new ResponseEntity<>(actorsService.searchActorById(id), HttpStatus.OK);
     }
 
