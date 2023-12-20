@@ -1,6 +1,7 @@
 package com.zakado.zkd.filmmanagement.controller;
 
 import com.zakado.zkd.filmmanagement.model.dto.ActorRequest;
+import com.zakado.zkd.filmmanagement.model.entity.Actor;
 import com.zakado.zkd.filmmanagement.service.ActorsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,8 @@ public class ActorsController {
     private final ActorsService actorsService;
 
     @GetMapping
-    public ResponseEntity<List<ActorRequest>> searchAllActors() {
-        List<ActorRequest> actorsList = actorsService.searchAllActors();
+    public ResponseEntity<List<Actor>> searchAllActors() {
+        List<Actor> actorsList = actorsService.searchAllActors();
         return new ResponseEntity<>(actorsList, HttpStatus.OK);
     }
 
@@ -28,12 +29,12 @@ public class ActorsController {
     }*/
 
     @GetMapping("/{id}")
-    public ResponseEntity<ActorRequest> searchActorById(@PathVariable("id") final Integer id) {
+    public ResponseEntity<Actor> searchActorById(@PathVariable("id") final Integer id) {
         return new ResponseEntity<>(actorsService.searchActorById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<ActorRequest> saveActor(@RequestBody final ActorRequest actorRequest) {
+    public ResponseEntity<Actor> saveActor(@RequestBody final Actor actorRequest) {
         return new ResponseEntity<>(actorsService.saveActor(actorRequest), HttpStatus.CREATED);
     }
 

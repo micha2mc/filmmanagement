@@ -27,7 +27,8 @@ public class Actor {
     private String name;
     @Basic
     @Column(name = "dob")
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", locale = "es-ES", timezone = "Europe/Madrid")
+    @Temporal(TemporalType.DATE)
     private Date dob;
     @Basic
     @Column(name = "cob")

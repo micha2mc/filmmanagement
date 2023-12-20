@@ -15,7 +15,6 @@ public class ActorsDAOImpl implements ActorsDAO {
     private final ActorsRepository actorsRepository;
 
 
-
     @Override
     public Actor updateActor(Actor actor) {
         return actorsRepository.save(actor);
@@ -50,5 +49,10 @@ public class ActorsDAOImpl implements ActorsDAO {
     @Override
     public List<Actor> searchMoviesByNameActor(String name) {
         return actorsRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    @Override
+    public void deleteActor(Actor actor) {
+        actorsRepository.delete(actor);
     }
 }

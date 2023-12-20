@@ -4,6 +4,7 @@ import com.zakado.zkd.filmmanagement.model.entity.Movie;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,15 +17,11 @@ public class ActorRequest {
 
     private String name;
 
-    private String dni;
-
-    private String dob;
+    private LocalDate dob;
 
     private String cob;
 
     private String image;
-
-    private String status;
 
     private String genre;
 
