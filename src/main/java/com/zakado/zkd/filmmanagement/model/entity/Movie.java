@@ -40,9 +40,9 @@ public class Movie {
     private String image;
     @Basic
     @Column(name = "youtubeid")
-    private String youtubeid;
+    private String youtubeTrailerId;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "movies_actors",
             joinColumns = {@JoinColumn(name = "id_movies_fk", referencedColumnName = "nid")},
             inverseJoinColumns = {@JoinColumn(name = "id_actors_fk", referencedColumnName = "nid")})
@@ -50,7 +50,7 @@ public class Movie {
     @ToString.Exclude
     private Set<Actor> actors = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "movies_genres",
             joinColumns = {@JoinColumn(name = "id_movies_fk", referencedColumnName = "nid")},
             inverseJoinColumns = {@JoinColumn(name = "id_genres_fk", referencedColumnName = "nid")})
@@ -68,6 +68,18 @@ public class Movie {
     public void removeActor(Actor actor) {
         if (actor != null) {
             getActors().remove(actor);
+        }
+    }
+
+    public void addGenre(Genre genre){
+        if (genre != null) {
+            getGenres().add(genre);
+        }
+    }
+
+    public void removeGenre(Genre genre){
+        if (genre != null) {
+            getGenres().remove(genre);
         }
     }
 

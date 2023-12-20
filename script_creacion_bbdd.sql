@@ -53,6 +53,7 @@ CREATE TABLE `movies_genres` (
 ALTER TABLE `movies_actors` ADD CONSTRAINT `movies_actors_fk0` FOREIGN KEY (`id_movies_fk`) REFERENCES `movies`(`nid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE `movies_actors` ADD CONSTRAINT `movies_actors_fk1` FOREIGN KEY (`id_actors_fk`) REFERENCES `actors`(`nid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE `movies_genres` ADD CONSTRAINT `movies_genres_fk2` FOREIGN KEY (`id_genres_fk`) REFERENCES `genres`(`nid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `movies_genres` ADD CONSTRAINT `movies_genres_fk3` FOREIGN KEY (`id_movies_fk`) REFERENCES `movies`(`nid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

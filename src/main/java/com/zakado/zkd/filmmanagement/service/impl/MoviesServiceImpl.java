@@ -2,9 +2,9 @@ package com.zakado.zkd.filmmanagement.service.impl;
 
 import com.zakado.zkd.filmmanagement.dao.ActorsDAO;
 import com.zakado.zkd.filmmanagement.dao.MoviesDAO;
-import com.zakado.zkd.filmmanagement.model.dto.ActorRequest;
 import com.zakado.zkd.filmmanagement.model.dto.MoviesRequest;
 import com.zakado.zkd.filmmanagement.model.entity.Actor;
+import com.zakado.zkd.filmmanagement.model.entity.Genre;
 import com.zakado.zkd.filmmanagement.model.entity.Movie;
 import com.zakado.zkd.filmmanagement.service.MoviesService;
 import com.zakado.zkd.filmmanagement.utils.FilmManagementUtils;
@@ -23,57 +23,20 @@ public class MoviesServiceImpl implements MoviesService {
     private final ActorsDAO actorsDAO;
 
     @Override
-    public List<MoviesRequest> searchAllMovies() {
-        Set<Movie> allMovies = moviesDAO.searchAllMovies();
+    public List<Movie> searchAllMovies() {
+        List<Movie> allMovies = moviesDAO.searchAllMovies();
         log.info("{} películas encontradas.", allMovies.size());
         return getListMoviesSorted(allMovies);
     }
 
     @Override
-    public MoviesRequest saveMovie(MoviesRequest moviesRequest) {
+    public Movie saveMovie(Movie moviesRequest) {
         log.info("Añadiendo una nueva película {}", moviesRequest);
-
-        if (Objects.isNull(moviesRequest.getNid())) {
-            String strTitle = moviesRequest.getTitle().trim();
-            Set<Movie> movieByTitle = moviesDAO.searchMovieByTitle(strTitle);
-            if (movieByTitle.isEmpty()) {
-                Movie movie = moviesDAO.saveMovie(FilmManagementUtils.movieRequestToEntity(moviesRequest));
-                moviesRequest = FilmManagementUtils.entityToMovieRequest(movie);
-            } else if (isNotPresent(movieByTitle, strTitle)) {
-                Movie movieTemp = movieByTitle.stream()
-                        .filter(pel -> FilmManagementUtils.removeSpace(pel.getTitle())
-                                .equalsIgnoreCase(FilmManagementUtils.removeSpace(strTitle))
-                        ).findFirst().orElse(null);
-
-                assert movieTemp != null;
-                moviesRequest = FilmManagementUtils.entityToMovieRequest(moviesDAO.saveMovie(movieTemp));
-            } else {
-                Movie movie = moviesDAO.saveMovie(FilmManagementUtils.movieRequestToEntity(moviesRequest));
-                moviesRequest = FilmManagementUtils.entityToMovieRequest(movie);
-            }
-            return moviesRequest;
-        } else {
-            Set<ActorRequest> collectActors = moviesRequest.getActors();
-
-            if (Objects.nonNull(collectActors) && !collectActors.isEmpty()) {
-                Movie movie = moviesDAO.searchMovieById(moviesRequest.getNid());
-                List<Integer> idsActor = new ArrayList<>();
-                for (Actor actor : movie.getActors()) {
-                    idsActor.add(actor.getNid());
-                }
-                for (ActorRequest actorRequest : collectActors) {
-                    if (!idsActor.contains(actorRequest.getNid())) {
-                        movie.addActor(FilmManagementUtils.actorRequestToEntity(actorRequest));
-                    }
-                }
-                return FilmManagementUtils.entityToMovieRequest(moviesDAO.saveMovie(movie));
-            }
-        }
-        return moviesRequest;
+        return moviesDAO.saveMovie(moviesRequest);
     }
 
     @Override
-    public void updateMovie(final MoviesRequest moviesRequest) {
+    public void updateMovie(final Movie moviesRequest) {
 
         Movie movie = moviesDAO.searchMovieById(moviesRequest.getNid());
         if (Objects.nonNull(movie)) {
@@ -84,7 +47,7 @@ public class MoviesServiceImpl implements MoviesService {
         }
     }
 
-    private Movie getDataToUpdateMovie(MoviesRequest moviesRequest, Movie movie) {
+    private Movie getDataToUpdateMovie(Movie moviesRequest, Movie movie) {
         movie.setTitle(moviesRequest.getTitle());
         movie.setYear(moviesRequest.getYear());
         movie.setDuration(moviesRequest.getDuration());
@@ -95,34 +58,32 @@ public class MoviesServiceImpl implements MoviesService {
     }
 
     @Override
-    public MoviesRequest searchMovieById(Integer id) {
-        return FilmManagementUtils.entityToMovieRequest(moviesDAO.searchMovieById(id));
+    public Movie searchMovieById(Integer id) {
+        return moviesDAO.searchMovieById(id);
     }
 
     @Override
-    public List<MoviesRequest> searchMovieByTitle(String title) {
-        Set<Movie> moviesEntities = moviesDAO.searchMovieByTitle(title);
+    public List<Movie> searchMovieByTitle(String title) {
+        List<Movie> moviesEntities = moviesDAO.searchMovieByTitle(title);
         log.info("{} películas encontradas.", moviesEntities.size());
         return getListMoviesSorted(moviesEntities);
     }
 
     @Override
-    public List<MoviesRequest> searchMoviesByNameActor(String name) {
-        Set<Movie> allMovies = new HashSet<>();
+    public List<Movie> searchMoviesByNameActor(String name) {
+        List<Movie> allMovies = new ArrayList<>();
         List<Actor> actorsEntities = actorsDAO.searchMoviesByNameActor(name);
         if (!actorsEntities.isEmpty()) {
             for (Actor actor : actorsEntities) {
-                for (Movie movie : actor.getMoviesEntities()) {
-                    allMovies.add(movie);
-                }
+                allMovies.addAll(actor.getMoviesEntities());
             }
         }
         return getListMoviesSorted(allMovies);
     }
 
     @Override
-    public List<MoviesRequest> searchMoviesByYear(Integer year) {
-        Set<Movie> moviesEntities = moviesDAO.searchMoviesByYear(year);
+    public List<Movie> searchMoviesByYear(Integer year) {
+        List<Movie> moviesEntities = moviesDAO.searchMoviesByYear(year);
         return getListMoviesSorted(moviesEntities);
     }
 
@@ -136,18 +97,12 @@ public class MoviesServiceImpl implements MoviesService {
     @Override
     public void deleteMovie(Integer idPeli) {
         Movie movie = moviesDAO.searchMovieById(idPeli);
-        if (Objects.nonNull(movie)) {
-            moviesDAO.saveMovie(movie);
-            log.info("Película eliminada con éxito");
-        } else {
-            log.info("Película con ID " + idPeli + " no existe");
-        }
+        moviesDAO.deleteMovie(movie);
     }
 
 
-    private static List<MoviesRequest> getListMoviesSorted(Set<Movie> allMovies) {
-        return allMovies.stream().map(FilmManagementUtils::entityToMovieRequest)
-                .sorted(Comparator.comparing(MoviesRequest::getYear).reversed()).toList();
+    private static List<Movie> getListMoviesSorted(List<Movie> allMovies) {
+        return allMovies.stream().sorted(Comparator.comparing(Movie::getYear).reversed()).toList();
     }
 
     private boolean isNotPresent(Set<Movie> movieByTitle, String title) {

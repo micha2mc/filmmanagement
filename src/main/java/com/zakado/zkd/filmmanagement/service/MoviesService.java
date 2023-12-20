@@ -1,25 +1,25 @@
 package com.zakado.zkd.filmmanagement.service;
 
-import com.zakado.zkd.filmmanagement.model.dto.MoviesRequest;
+import com.zakado.zkd.filmmanagement.model.entity.Movie;
 
 import java.util.List;
 
 public interface MoviesService {
-    List<MoviesRequest> searchAllMovies();
+    List<Movie> searchAllMovies();
 
-    MoviesRequest saveMovie(MoviesRequest moviesRequest);
+    Movie saveMovie(Movie moviesRequest);
 
     void deleteMovie(Integer idPeli);
 
-    void updateMovie(MoviesRequest moviesRequest);
+    void updateMovie(Movie moviesRequest);
 
-    MoviesRequest searchMovieById(Integer id);
+    Movie searchMovieById(Integer id);
 
-    List<MoviesRequest> searchMovieByTitle(String title);
+    List<Movie> searchMovieByTitle(String title);
 
-    List<MoviesRequest> searchMoviesByNameActor(String name);
+    List<Movie> searchMoviesByNameActor(String name);
 
-    List<MoviesRequest> searchMoviesByYear(Integer year);
+    List<Movie> searchMoviesByYear(Integer year);
 
     //List<MoviesRequest> searchMoviesByGenre(String genre);
 }

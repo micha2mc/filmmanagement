@@ -39,8 +39,7 @@ public class Actor {
     @Column(name = "genre")
     private String genre;
 
-    @ManyToMany(mappedBy = "actors",
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(mappedBy = "actors")
     @JsonIgnoreProperties("actors")
     private Set<Movie> moviesEntities = new HashSet<>();
 

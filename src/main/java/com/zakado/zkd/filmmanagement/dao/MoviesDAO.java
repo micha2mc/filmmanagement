@@ -2,15 +2,17 @@ package com.zakado.zkd.filmmanagement.dao;
 
 import com.zakado.zkd.filmmanagement.model.entity.Movie;
 
+import java.util.List;
 import java.util.Set;
 
 public interface MoviesDAO {
-    Set<Movie> searchAllMovies();
+    List<Movie> searchAllMovies();
     Movie saveMovie(Movie movie);
     Movie searchMovieById(Integer id);
 
-    Set<Movie> searchMovieByTitle(String strTitle);
+    List<Movie> searchMovieByTitle(String strTitle);
 
-    Set<Movie> searchMoviesByYear(Integer year);
+    List<Movie> searchMoviesByYear(Integer year);
 
+    void deleteMovie(Movie movie);
 }
