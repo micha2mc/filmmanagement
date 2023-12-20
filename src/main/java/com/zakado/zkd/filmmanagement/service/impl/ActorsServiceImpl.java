@@ -59,23 +59,14 @@ public class ActorsServiceImpl implements ActorsService {
     }
 
     @Override
-    public ActorRequest saveActor(ActorRequest actorRequest) {
-        Actor actorSaved = null;
-        Actor actor = FilmManagementUtils.actorRequestToEntity(actorRequest);
-        /*Optional<Actor> actorPorDNI = actorsDAO.searchActorByDNI(actor.getDni());
-        if (actorPorDNI.isEmpty()) {
-            actorSaved = actorsDAO.saveActor(actor);
-        } else {
-            Actor actor1 = actorPorDNI.get();
-            actorSaved = actorsDAO.updateActor(actor1);
-        }*/
-        return FilmManagementUtils.entityToActorRequest(actorSaved);
+    public Actor saveActor(Actor actorRequest) {
+        return actorsDAO.saveActor(actorRequest);
     }
 
     @Override
-    public List<ActorRequest> searchAllActors() {
-        List<Actor> listActors = actorsDAO.searchAllActors();
-        return listActors.stream().map(FilmManagementUtils::entityToActorRequest)
-                .sorted(Comparator.comparing(ActorRequest::getName)).toList();
+    public List<Actor> searchAllActors() {
+        return actorsDAO.searchAllActors();
+        /*return listActors.stream().map(FilmManagementUtils::entityToActorRequest)
+                .sorted(Comparator.comparing(ActorRequest::getName)).toList();*/
     }
 }
