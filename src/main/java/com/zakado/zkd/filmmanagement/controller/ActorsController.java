@@ -23,11 +23,6 @@ public class ActorsController {
         return new ResponseEntity<>(actorsList, HttpStatus.OK);
     }
 
-    /*@GetMapping("/dni/{dni}")
-    public ResponseEntity<ActorRequest> searchActorByDNI(@PathVariable("dni") final String dni) {
-        return new ResponseEntity<>(actorsService.searchActorByDNI(dni), HttpStatus.OK);
-    }*/
-
     @GetMapping("/{id}")
     public ResponseEntity<Actor> searchActorById(@PathVariable("id") final Integer id) {
         return new ResponseEntity<>(actorsService.searchActorById(id), HttpStatus.OK);

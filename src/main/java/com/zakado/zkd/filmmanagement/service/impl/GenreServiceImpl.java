@@ -23,6 +23,6 @@ public class GenreServiceImpl implements GenreService {
     @Override
     public List<Genre> getAllGenres() {
         List<Genre> allGenres = genreDAO.getAllGenres();
-        return allGenres.stream().sorted(Comparator.comparing(Genre::getName)).toList();
+        return allGenres.stream().sorted(Comparator.comparing(Genre::getDescription)).toList();
     }
 }

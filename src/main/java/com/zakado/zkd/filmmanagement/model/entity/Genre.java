@@ -21,8 +21,8 @@ public class Genre {
     @Column(name = "nid")
     private Integer nid;
     @Basic
-    @Column(name = "name")
-    private String name;
+    @Column(name = "description")
+    private String description;
     @ManyToMany(mappedBy = "genres",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JsonIgnoreProperties("genres")
