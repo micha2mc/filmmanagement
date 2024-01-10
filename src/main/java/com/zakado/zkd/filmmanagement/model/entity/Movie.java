@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -57,6 +58,11 @@ public class Movie {
     @JsonIgnoreProperties("moviesEntities")
     @ToString.Exclude
     private Set<Genre> genres = new HashSet<>();
+
+    @Transient
+    private List<Integer> idsGenero;
+    @Transient
+    private List<Integer> idsActors;
 
 
     public void addActor(Actor actor) {

@@ -13,7 +13,7 @@ public interface ActorsDAO {
 
     Actor saveActor(Actor actor);
 
-    Optional<Actor> searchActorById(Integer id);
+    Actor searchActorById(Integer id);
 
     List<Actor> searchAllActors();
 

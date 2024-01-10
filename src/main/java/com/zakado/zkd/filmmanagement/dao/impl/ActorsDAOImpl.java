@@ -37,8 +37,8 @@ public class ActorsDAOImpl implements ActorsDAO {
     }
 
     @Override
-    public Optional<Actor> searchActorById(Integer id) {
-        return actorsRepository.findById(id);
+    public Actor searchActorById(Integer id) {
+        return actorsRepository.findById(id).orElse(null);
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.zakado.zkd.filmmanagement.service.impl;
 
 import com.zakado.zkd.filmmanagement.dao.ActorsDAO;
+import com.zakado.zkd.filmmanagement.dao.GenreDAO;
 import com.zakado.zkd.filmmanagement.dao.MoviesDAO;
-import com.zakado.zkd.filmmanagement.model.dto.MoviesRequest;
 import com.zakado.zkd.filmmanagement.model.entity.Actor;
 import com.zakado.zkd.filmmanagement.model.entity.Genre;
 import com.zakado.zkd.filmmanagement.model.entity.Movie;
@@ -21,6 +21,7 @@ public class MoviesServiceImpl implements MoviesService {
 
     private final MoviesDAO moviesDAO;
     private final ActorsDAO actorsDAO;
+    private final GenreDAO genreDAO;
 
     @Override
     public List<Movie> searchAllMovies() {
@@ -32,8 +33,11 @@ public class MoviesServiceImpl implements MoviesService {
     @Override
     public Movie saveMovie(Movie moviesRequest) {
         log.info("Añadiendo una nueva película {}", moviesRequest);
-        return moviesDAO.saveMovie(moviesRequest);
+        Movie movie = moviesDAO.saveMovie(moviesRequest);
+        setGenreAndActors(moviesRequest, movie);
+        return moviesDAO.saveMovie(movie);
     }
+
 
     @Override
     public void updateMovie(final Movie moviesRequest) {
@@ -47,15 +51,6 @@ public class MoviesServiceImpl implements MoviesService {
         }
     }
 
-    private Movie getDataToUpdateMovie(Movie moviesRequest, Movie movie) {
-        movie.setTitle(moviesRequest.getTitle());
-        movie.setYear(moviesRequest.getYear());
-        movie.setDuration(moviesRequest.getDuration());
-        movie.setCountry(moviesRequest.getCountry());
-        movie.setSynopsis(moviesRequest.getSynopsis());
-        movie.setImage(moviesRequest.getImage());
-        return movie;
-    }
 
     @Override
     public Movie searchMovieById(Integer id) {
@@ -109,5 +104,32 @@ public class MoviesServiceImpl implements MoviesService {
 
         return movieByTitle.stream().anyMatch(pel -> FilmManagementUtils.removeSpace(pel.getTitle())
                 .equalsIgnoreCase(FilmManagementUtils.removeSpace(title)));
+    }
+
+    private Movie getDataToUpdateMovie(Movie moviesRequest, Movie movie) {
+        movie.setTitle(moviesRequest.getTitle());
+        movie.setYear(moviesRequest.getYear());
+        movie.setDuration(moviesRequest.getDuration());
+        movie.setCountry(moviesRequest.getCountry());
+        movie.setSynopsis(moviesRequest.getSynopsis());
+        movie.setImage(Objects.nonNull(moviesRequest.getImage()) ? moviesRequest.getImage() : movie.getImage());
+        movie.setYoutubeTrailerId(moviesRequest.getYoutubeTrailerId());
+        setGenreAndActors(moviesRequest, movie);
+        return movie;
+    }
+
+    private void setGenreAndActors(Movie moviesRequest, Movie movie) {
+        if (Objects.nonNull(moviesRequest.getIdsGenero()) && !moviesRequest.getIdsGenero().isEmpty()) {
+            for (Integer id : moviesRequest.getIdsGenero()) {
+                Genre genre = genreDAO.searchGenreById(id);
+                movie.addGenre(genre);
+            }
+        }
+        if (Objects.nonNull(moviesRequest.getIdsActors()) && !moviesRequest.getIdsActors().isEmpty()) {
+            for (Integer id : moviesRequest.getIdsActors()) {
+                Actor actor = actorsDAO.searchActorById(id);
+                movie.addActor(actor);
+            }
+        }
     }
 }

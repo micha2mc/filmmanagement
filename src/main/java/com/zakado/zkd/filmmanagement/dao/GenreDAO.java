@@ -8,4 +8,6 @@ public interface GenreDAO {
     Genre saveGenre(Genre genre);
 
     List<Genre> getAllGenres();
+
+    Genre searchGenreById(Integer id);
 }
