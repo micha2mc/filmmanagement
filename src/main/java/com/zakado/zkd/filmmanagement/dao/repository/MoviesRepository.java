@@ -8,9 +8,8 @@ import java.util.Set;
 
 public interface MoviesRepository extends JpaRepository<Movie, Integer> {
     List<Movie> findByTitleContainingIgnoreCase(String title);
-    //Set<Movie> findByStatus(String status);
 
     List<Movie> findByYear(Integer year);
 
-    //Set<Movie> findByGenre(String genre);
+    List<Movie> findByGenresContainingIgnoreCase(String genre);
 }
