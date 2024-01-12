@@ -1,7 +1,5 @@
 package com.zakado.zkd.filmmanagement.controller;
 
-import com.zakado.zkd.filmmanagement.model.dto.ActorRequest;
-import com.zakado.zkd.filmmanagement.model.entity.Actor;
 import com.zakado.zkd.filmmanagement.model.entity.Genre;
 import com.zakado.zkd.filmmanagement.service.GenreService;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +21,12 @@ public class GenreController {
         List<Genre> genreList = genreService.getAllGenres();
         return new ResponseEntity<>(genreList, HttpStatus.OK);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Genre> searchActorById(@PathVariable("id") final Integer id) {
         return new ResponseEntity<>(genreService.searchGenreById(id), HttpStatus.OK);
     }
+
     @PostMapping("/new")
     public ResponseEntity<Genre> saveGenre(@RequestBody final Genre genre) {
         return new ResponseEntity<>(genreService.saveGenre(genre), HttpStatus.CREATED);

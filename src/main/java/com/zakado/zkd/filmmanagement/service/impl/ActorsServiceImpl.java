@@ -1,7 +1,6 @@
 package com.zakado.zkd.filmmanagement.service.impl;
 
 import com.zakado.zkd.filmmanagement.dao.ActorsDAO;
-import com.zakado.zkd.filmmanagement.model.dto.ActorRequest;
 import com.zakado.zkd.filmmanagement.model.entity.Actor;
 import com.zakado.zkd.filmmanagement.model.entity.Movie;
 import com.zakado.zkd.filmmanagement.service.ActorsService;
@@ -20,15 +19,9 @@ public class ActorsServiceImpl implements ActorsService {
 
     private final ActorsDAO actorsDAO;
 
-    /*@Override
-    public ActorRequest searchActorByDNI(String dni) {
-        Actor actor = actorsDAO.searchActorByDNI(dni).orElse(null);
-        assert actor != null;
-        return FilmManagementUtils.entityToActorRequest(actor);
-    }*/
 
     @Override
-    public ActorRequest updateActor(ActorRequest actor) {
+    public Actor updateActor(Actor actor) {
         return actor;
         /*Optional<Actor> actorsTemp = actorsDAO.searchActorByDNI(actor.getDni());
         if (actorsTemp.isPresent()) {
@@ -42,8 +35,8 @@ public class ActorsServiceImpl implements ActorsService {
     @Override
     public void deleteActor(Integer id) {
         Actor actor = actorsDAO.searchActorById(id);
-        if(Objects.nonNull(actor)){
-            for (Movie movie: actor.getMoviesEntities()){
+        if (Objects.nonNull(actor)) {
+            for (Movie movie : actor.getMoviesEntities()) {
                 movie.removeActor(actor);
             }
         }

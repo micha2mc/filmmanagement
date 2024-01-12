@@ -1,6 +1,5 @@
 package com.zakado.zkd.filmmanagement.controller;
 
-import com.zakado.zkd.filmmanagement.model.dto.ActorRequest;
 import com.zakado.zkd.filmmanagement.model.entity.Actor;
 import com.zakado.zkd.filmmanagement.service.ActorsService;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +33,7 @@ public class ActorsController {
     }
 
     @PutMapping
-    public ResponseEntity<ActorRequest> updateActor(@RequestBody final ActorRequest actorDTO) {
+    public ResponseEntity<Actor> updateActor(@RequestBody final Actor actorDTO) {
         return new ResponseEntity<>(actorsService.updateActor(actorDTO), HttpStatus.OK);
     }
 

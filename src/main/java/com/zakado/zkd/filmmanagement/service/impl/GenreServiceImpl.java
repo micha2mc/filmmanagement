@@ -1,7 +1,6 @@
 package com.zakado.zkd.filmmanagement.service.impl;
 
 import com.zakado.zkd.filmmanagement.dao.GenreDAO;
-import com.zakado.zkd.filmmanagement.model.dto.ActorRequest;
 import com.zakado.zkd.filmmanagement.model.entity.Genre;
 import com.zakado.zkd.filmmanagement.service.GenreService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +14,7 @@ import java.util.List;
 public class GenreServiceImpl implements GenreService {
 
     private final GenreDAO genreDAO;
+
     @Override
     public Genre saveGenre(Genre genre) {
         return genreDAO.saveGenre(genre);
