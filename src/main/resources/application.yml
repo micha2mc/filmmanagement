@@ -16,8 +16,10 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 server:
-  port: 8081
+  port: 0
 eureka:
   instance:
+    hostname: localhost
     instance-id: ${spring.application.name}:${random.uuid}
+
 
