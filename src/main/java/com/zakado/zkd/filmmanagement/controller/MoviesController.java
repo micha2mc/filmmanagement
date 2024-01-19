@@ -1,6 +1,5 @@
 package com.zakado.zkd.filmmanagement.controller;
 
-import com.zakado.zkd.filmmanagement.model.dto.MoviesRequest;
 import com.zakado.zkd.filmmanagement.model.entity.Movie;
 import com.zakado.zkd.filmmanagement.service.MoviesService;
 import lombok.RequiredArgsConstructor;
@@ -37,11 +36,11 @@ public class MoviesController {
         return new ResponseEntity<>(moviesDTOS, HttpStatus.OK);
     }
 
-    /*@GetMapping("/genre/{genre}")
-    public ResponseEntity<List<MoviesRequest>> searchMoviesByGenre(@PathVariable("genre") final String genre) {
-        List<MoviesRequest> moviesDTOS = moviesService.searchMoviesByGenre(genre);
+    @GetMapping("/genre/{genre}")
+    public ResponseEntity<List<Movie>> searchMoviesByGenre(@PathVariable("genre") final String genre) {
+        List<Movie> moviesDTOS = moviesService.searchMoviesByGenre(genre);
         return new ResponseEntity<>(moviesDTOS, HttpStatus.OK);
-    }*/
+    }
 
     @GetMapping("/year/{year}")
     public ResponseEntity<List<Movie>> searchMoviesByYear(@PathVariable("year") final Integer year) {

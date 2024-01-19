@@ -15,4 +15,5 @@ public interface MoviesDAO {
     List<Movie> searchMoviesByYear(Integer year);
 
     void deleteMovie(Movie movie);
+
 }

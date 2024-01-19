@@ -21,10 +21,9 @@ public class Genre {
     @Column(name = "nid")
     private Integer nid;
     @Basic
-    @Column(name = "name")
-    private String name;
-    @ManyToMany(mappedBy = "genres",
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @Column(name = "description")
+    private String description;
+    @ManyToMany(mappedBy = "genres")
     @JsonIgnoreProperties("genres")
     private Set<Movie> moviesEntities = new HashSet<>();
 }

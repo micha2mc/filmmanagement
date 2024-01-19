@@ -32,7 +32,7 @@ CREATE TABLE `actors` (
 DROP TABLE IF EXISTS `moviesactorsdb`.`genres`;
 CREATE TABLE `genres` (
     `nid` INT NOT NULL AUTO_INCREMENT,
-    `name` varchar(50) NOT NULL,
+    `description` varchar(50) NOT NULL,
     PRIMARY KEY (`nid`)
 ) ENGINE = InnoDB;
 

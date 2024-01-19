@@ -22,4 +22,14 @@ public class GenreDAOImpl implements GenreDAO {
     public List<Genre> getAllGenres() {
         return genreRepository.findAll();
     }
+
+    @Override
+    public Genre searchGenreById(Integer id) {
+        return genreRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Genre> searchMoviesByGenre(String genre) {
+        return genreRepository.findByDescriptionContainingIgnoreCase(genre);
+    }
 }

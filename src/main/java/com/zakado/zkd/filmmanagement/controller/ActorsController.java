@@ -1,6 +1,5 @@
 package com.zakado.zkd.filmmanagement.controller;
 
-import com.zakado.zkd.filmmanagement.model.dto.ActorRequest;
 import com.zakado.zkd.filmmanagement.model.entity.Actor;
 import com.zakado.zkd.filmmanagement.service.ActorsService;
 import lombok.RequiredArgsConstructor;
@@ -23,11 +22,6 @@ public class ActorsController {
         return new ResponseEntity<>(actorsList, HttpStatus.OK);
     }
 
-    /*@GetMapping("/dni/{dni}")
-    public ResponseEntity<ActorRequest> searchActorByDNI(@PathVariable("dni") final String dni) {
-        return new ResponseEntity<>(actorsService.searchActorByDNI(dni), HttpStatus.OK);
-    }*/
-
     @GetMapping("/{id}")
     public ResponseEntity<Actor> searchActorById(@PathVariable("id") final Integer id) {
         return new ResponseEntity<>(actorsService.searchActorById(id), HttpStatus.OK);
@@ -39,7 +33,7 @@ public class ActorsController {
     }
 
     @PutMapping
-    public ResponseEntity<ActorRequest> updateActor(@RequestBody final ActorRequest actorDTO) {
+    public ResponseEntity<Actor> updateActor(@RequestBody final Actor actorDTO) {
         return new ResponseEntity<>(actorsService.updateActor(actorDTO), HttpStatus.OK);
     }
 
