@@ -32,4 +32,9 @@ public class GenreDAOImpl implements GenreDAO {
     public List<Genre> searchMoviesByGenre(String genre) {
         return genreRepository.findByDescriptionContainingIgnoreCase(genre);
     }
+
+    @Override
+    public void deleteGenre(Integer id) {
+        genreRepository.deleteById(id);
+    }
 }

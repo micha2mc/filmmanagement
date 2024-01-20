@@ -31,4 +31,9 @@ public class GenreController {
     public ResponseEntity<Genre> saveGenre(@RequestBody final Genre genre) {
         return new ResponseEntity<>(genreService.saveGenre(genre), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteGenre(@PathVariable("id") final Integer id) {
+        genreService.deleteGenre(id);
+    }
 }

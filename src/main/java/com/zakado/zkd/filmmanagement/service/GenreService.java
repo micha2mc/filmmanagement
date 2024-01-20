@@ -10,4 +10,6 @@ public interface GenreService {
     List<Genre> getAllGenres();
 
     Genre searchGenreById(Integer id);
+
+    void deleteGenre(Integer id);
 }

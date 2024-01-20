@@ -12,4 +12,6 @@ public interface GenreDAO {
     Genre searchGenreById(Integer id);
 
     List<Genre> searchMoviesByGenre(String genre);
+
+    void deleteGenre(Integer id);
 }
