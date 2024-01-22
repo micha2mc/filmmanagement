@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ActorsRepository extends JpaRepository<Actor, Integer> {
-    //Optional<Actor> findByDni(String dni);
 
     List<Actor> findByNameContainingIgnoreCase(String name);
-
-    //List<Actor> findByStatus(String status);
 }

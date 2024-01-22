@@ -9,8 +9,6 @@ public interface ActorsDAO {
 
     Actor updateActor(Actor actor);
 
-    //String eliminarActor(Integer dni);
-
     Actor saveActor(Actor actor);
 
     Actor searchActorById(Integer id);

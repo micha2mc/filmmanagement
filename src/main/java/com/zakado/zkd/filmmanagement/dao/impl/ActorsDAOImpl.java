@@ -20,17 +20,6 @@ public class ActorsDAOImpl implements ActorsDAO {
         return actorsRepository.save(actor);
     }
 
-    /*@Override
-    public String eliminarActor(String dni) {
-        ActorsEntity actorsEntity = actorsRepository.findByDni(dni).orElse(null);
-        if (Objects.nonNull(actorsEntity)) {
-            actorsEntity.setStatus("N");
-            actorsRepository.save(actorsEntity);
-            return "Actor eliminado con éxito";
-        }
-        return "Actor con DNI " + dni + " no existe";
-    }*/
-
     @Override
     public Actor saveActor(Actor actor) {
         return actorsRepository.save(actor);
