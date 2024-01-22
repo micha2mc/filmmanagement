@@ -32,11 +32,6 @@ public class ActorsController {
         return new ResponseEntity<>(actorsService.saveActor(actorRequest), HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<Actor> updateActor(@RequestBody final Actor actorDTO) {
-        return new ResponseEntity<>(actorsService.updateActor(actorDTO), HttpStatus.OK);
-    }
-
     @DeleteMapping("/{id}")
     public void deleteActor(@PathVariable("id") final Integer id) {
         actorsService.deleteActor(id);

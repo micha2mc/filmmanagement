@@ -5,9 +5,6 @@ import com.zakado.zkd.filmmanagement.model.entity.Actor;
 import java.util.List;
 
 public interface ActorsService {
-    //ActorRequest searchActorByDNI(String dni);
-
-    Actor updateActor(Actor actorDTO);
 
     void deleteActor(Integer dni);
 

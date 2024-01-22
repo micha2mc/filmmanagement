@@ -7,12 +7,14 @@ import com.zakado.zkd.filmmanagement.model.entity.Actor;
 import com.zakado.zkd.filmmanagement.model.entity.Genre;
 import com.zakado.zkd.filmmanagement.model.entity.Movie;
 import com.zakado.zkd.filmmanagement.service.MoviesService;
-import com.zakado.zkd.filmmanagement.utils.FilmManagementUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -104,12 +106,6 @@ public class MoviesServiceImpl implements MoviesService {
 
     private static List<Movie> getListMoviesSorted(List<Movie> allMovies) {
         return allMovies.stream().sorted(Comparator.comparing(Movie::getYear).reversed()).toList();
-    }
-
-    private boolean isNotPresent(Set<Movie> movieByTitle, String title) {
-
-        return movieByTitle.stream().anyMatch(pel -> FilmManagementUtils.removeSpace(pel.getTitle())
-                .equalsIgnoreCase(FilmManagementUtils.removeSpace(title)));
     }
 
     private Movie getDataToUpdateMovie(Movie moviesRequest, Movie movie) {

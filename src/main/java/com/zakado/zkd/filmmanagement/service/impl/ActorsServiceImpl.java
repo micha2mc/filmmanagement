@@ -21,18 +21,6 @@ public class ActorsServiceImpl implements ActorsService {
 
 
     @Override
-    public Actor updateActor(Actor actor) {
-        return actor;
-        /*Optional<Actor> actorsTemp = actorsDAO.searchActorByDNI(actor.getDni());
-        if (actorsTemp.isPresent()) {
-            Actor actor1 = actorsDAO.updateActor(actorsTemp.get());
-            return FilmManagementUtils.entityToActorRequest(actor1);
-        } else {
-            throw new RuntimeException("No existe actor para actualizar");
-        }*/
-    }
-
-    @Override
     public void deleteActor(Integer id) {
         Actor actor = actorsDAO.searchActorById(id);
         if (Objects.nonNull(actor)) {
