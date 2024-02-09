@@ -1,11 +1,10 @@
 package com.zakado.zkd.filmmanagement.dao.repository;
 
-import com.zakado.zkd.filmmanagement.model.entity.Genre;
-import com.zakado.zkd.filmmanagement.model.entity.Movie;
+
+import com.zakado.zkd.filmmanagement.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Set;
 
 public interface MoviesRepository extends JpaRepository<Movie, Integer> {
     List<Movie> findByTitleContainingIgnoreCase(String title);

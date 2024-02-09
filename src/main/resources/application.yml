@@ -3,9 +3,9 @@ spring:
     name: film-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/moviesactorsdb?useSSL=false&serverTimezone=Europe/Madrid&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://${DB_HOST}/${DB_FILM_NAME}?useSSL=false&serverTimezone=Europe/Madrid&allowPublicKeyRetrieval=true
     username: root
-    password:
+    password: root
   jpa:
     generate-ddl: false
     properties:
@@ -16,10 +16,16 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 server:
-  port: 0
+  port: 9003
 eureka:
   instance:
-    hostname: localhost
+    hostname: eureka-0
     instance-id: ${spring.application.name}:${random.uuid}
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
 
 

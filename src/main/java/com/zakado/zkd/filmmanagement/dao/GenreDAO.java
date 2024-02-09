@@ -1,6 +1,7 @@
 package com.zakado.zkd.filmmanagement.dao;
 
-import com.zakado.zkd.filmmanagement.model.entity.Genre;
+
+import com.zakado.zkd.filmmanagement.model.Genre;
 
 import java.util.List;
 

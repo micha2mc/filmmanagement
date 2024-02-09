@@ -1,8 +1,9 @@
 package com.zakado.zkd.filmmanagement.dao.impl;
 
+
 import com.zakado.zkd.filmmanagement.dao.GenreDAO;
 import com.zakado.zkd.filmmanagement.dao.repository.GenreRepository;
-import com.zakado.zkd.filmmanagement.model.entity.Genre;
+import com.zakado.zkd.filmmanagement.model.Genre;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

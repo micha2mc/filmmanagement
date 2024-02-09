@@ -1,4 +1,4 @@
-package com.zakado.zkd.filmmanagement.model.entity;
+package com.zakado.zkd.filmmanagement.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;

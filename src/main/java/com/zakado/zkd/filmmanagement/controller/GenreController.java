@@ -1,6 +1,7 @@
 package com.zakado.zkd.filmmanagement.controller;
 
-import com.zakado.zkd.filmmanagement.model.entity.Genre;
+
+import com.zakado.zkd.filmmanagement.model.Genre;
 import com.zakado.zkd.filmmanagement.service.GenreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

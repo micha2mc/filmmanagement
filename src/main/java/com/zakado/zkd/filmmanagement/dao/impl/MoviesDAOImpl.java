@@ -1,13 +1,13 @@
 package com.zakado.zkd.filmmanagement.dao.impl;
 
+
 import com.zakado.zkd.filmmanagement.dao.MoviesDAO;
 import com.zakado.zkd.filmmanagement.dao.repository.MoviesRepository;
-import com.zakado.zkd.filmmanagement.model.entity.Movie;
+import com.zakado.zkd.filmmanagement.model.Movie;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @RequiredArgsConstructor
 @Repository
@@ -45,7 +45,6 @@ public class MoviesDAOImpl implements MoviesDAO {
     public void deleteMovie(Movie movie) {
         moviesRepository.delete(movie);
     }
-
 
 
 }

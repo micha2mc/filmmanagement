@@ -1,6 +1,7 @@
 package com.zakado.zkd.filmmanagement.service;
 
-import com.zakado.zkd.filmmanagement.model.entity.Movie;
+
+import com.zakado.zkd.filmmanagement.model.Movie;
 
 import java.util.List;
 

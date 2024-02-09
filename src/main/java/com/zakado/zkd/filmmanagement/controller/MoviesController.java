@@ -1,6 +1,7 @@
 package com.zakado.zkd.filmmanagement.controller;
 
-import com.zakado.zkd.filmmanagement.model.entity.Movie;
+
+import com.zakado.zkd.filmmanagement.model.Movie;
 import com.zakado.zkd.filmmanagement.service.MoviesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

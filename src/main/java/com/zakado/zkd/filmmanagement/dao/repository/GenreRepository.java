@@ -1,6 +1,7 @@
 package com.zakado.zkd.filmmanagement.dao.repository;
 
-import com.zakado.zkd.filmmanagement.model.entity.Genre;
+
+import com.zakado.zkd.filmmanagement.model.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

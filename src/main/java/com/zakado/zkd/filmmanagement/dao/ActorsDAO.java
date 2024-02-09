@@ -1,9 +1,9 @@
 package com.zakado.zkd.filmmanagement.dao;
 
-import com.zakado.zkd.filmmanagement.model.entity.Actor;
+
+import com.zakado.zkd.filmmanagement.model.Actor;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ActorsDAO {
 

@@ -1,8 +1,9 @@
 package com.zakado.zkd.filmmanagement.service.impl;
 
+
 import com.zakado.zkd.filmmanagement.dao.GenreDAO;
-import com.zakado.zkd.filmmanagement.model.entity.Genre;
-import com.zakado.zkd.filmmanagement.model.entity.Movie;
+import com.zakado.zkd.filmmanagement.model.Genre;
+import com.zakado.zkd.filmmanagement.model.Movie;
 import com.zakado.zkd.filmmanagement.service.GenreService;
 import com.zakado.zkd.filmmanagement.service.MoviesService;
 import lombok.RequiredArgsConstructor;
@@ -38,9 +39,9 @@ public class GenreServiceImpl implements GenreService {
     @Override
     public void deleteGenre(Integer id) {
         Genre genre = genreDAO.searchGenreById(id);
-        if(Objects.nonNull(genre)){
+        if (Objects.nonNull(genre)) {
             List<Movie> movies = moviesService.searchMoviesByGenre(genre.getDescription());
-            for(Movie movie: movies){
+            for (Movie movie : movies) {
                 movie.removeGenre(genre);
             }
         }

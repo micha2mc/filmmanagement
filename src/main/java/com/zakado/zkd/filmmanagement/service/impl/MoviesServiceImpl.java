@@ -1,11 +1,12 @@
 package com.zakado.zkd.filmmanagement.service.impl;
 
+
 import com.zakado.zkd.filmmanagement.dao.ActorsDAO;
 import com.zakado.zkd.filmmanagement.dao.GenreDAO;
 import com.zakado.zkd.filmmanagement.dao.MoviesDAO;
-import com.zakado.zkd.filmmanagement.model.entity.Actor;
-import com.zakado.zkd.filmmanagement.model.entity.Genre;
-import com.zakado.zkd.filmmanagement.model.entity.Movie;
+import com.zakado.zkd.filmmanagement.model.Actor;
+import com.zakado.zkd.filmmanagement.model.Genre;
+import com.zakado.zkd.filmmanagement.model.Movie;
 import com.zakado.zkd.filmmanagement.service.MoviesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

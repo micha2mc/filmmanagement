@@ -1,13 +1,13 @@
 package com.zakado.zkd.filmmanagement.dao.impl;
 
+
 import com.zakado.zkd.filmmanagement.dao.ActorsDAO;
 import com.zakado.zkd.filmmanagement.dao.repository.ActorsRepository;
-import com.zakado.zkd.filmmanagement.model.entity.Actor;
+import com.zakado.zkd.filmmanagement.model.Actor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Repository
