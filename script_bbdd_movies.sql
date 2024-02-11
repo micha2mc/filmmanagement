@@ -7,47 +7,47 @@ USE `moviesactorsdb` ;
 
 DROP TABLE IF EXISTS `moviesactorsdb`.`movies`;
 CREATE TABLE `movies` (
-	`nid` INT NOT NULL AUTO_INCREMENT,
-	`title` varchar(50) NOT NULL,
-	`year` INT NOT NULL,
-	`duration` INT NOT NULL,
-	`country` varchar(50) NOT NULL,
-	`synopsis` text,
-	`image` varchar(255) ,
-    `youtubeid` varchar(50),
-	PRIMARY KEY (`nid`)
+                          `nid` INT NOT NULL AUTO_INCREMENT,
+                          `title` varchar(50) NOT NULL,
+                          `year` INT NOT NULL,
+                          `duration` INT NOT NULL,
+                          `country` varchar(50) NOT NULL,
+                          `synopsis` text,
+                          `image` varchar(255) ,
+                          `youtubeid` varchar(50),
+                          PRIMARY KEY (`nid`)
 ) ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS `moviesactorsdb`.`actors`;
 CREATE TABLE `actors` (
-	`nid` INT NOT NULL AUTO_INCREMENT,
-	`name` varchar(50) NOT NULL,
-	`dob` DATE NOT NULL,
-	`cob` varchar(50),
-    `image` varchar(255) ,
-    `genre` VARCHAR(1),
-	PRIMARY KEY (`nid`)
+                          `nid` INT NOT NULL AUTO_INCREMENT,
+                          `name` varchar(50) NOT NULL,
+                          `dob` DATE NOT NULL,
+                          `cob` varchar(50),
+                          `image` varchar(255) ,
+                          `genre` VARCHAR(1),
+                          PRIMARY KEY (`nid`)
 ) ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS `moviesactorsdb`.`genres`;
 CREATE TABLE `genres` (
-    `nid` INT NOT NULL AUTO_INCREMENT,
-    `description` varchar(50) NOT NULL,
-    PRIMARY KEY (`nid`)
+                          `nid` INT NOT NULL AUTO_INCREMENT,
+                          `description` varchar(50) NOT NULL,
+                          PRIMARY KEY (`nid`)
 ) ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS `moviesactorsdb`.`movies_actors`;
 CREATE TABLE `movies_actors` (
-	`id_movies_fk` INT NOT NULL,
-	`id_actors_fk` INT NOT NULL,
-	PRIMARY KEY (`id_movies_fk`,`id_actors_fk`)
+                                 `id_movies_fk` INT NOT NULL,
+                                 `id_actors_fk` INT NOT NULL,
+                                 PRIMARY KEY (`id_movies_fk`,`id_actors_fk`)
 ) ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS `moviesactorsdb`.`movies_genres`;
 CREATE TABLE `movies_genres` (
-    `id_movies_fk` INT NOT NULL,
-    `id_genres_fk` INT NOT NULL,
-    PRIMARY KEY (`id_movies_fk`,`id_genres_fk`)
+                                 `id_movies_fk` INT NOT NULL,
+                                 `id_genres_fk` INT NOT NULL,
+                                 PRIMARY KEY (`id_movies_fk`,`id_genres_fk`)
 ) ENGINE = InnoDB;
 
 ALTER TABLE `movies_actors` ADD CONSTRAINT `movies_actors_fk0` FOREIGN KEY (`id_movies_fk`) REFERENCES `movies`(`nid`) ON DELETE NO ACTION ON UPDATE NO ACTION;

@@ -3,9 +3,10 @@ spring:
     name: film-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DB_HOST}/${DB_FILM_NAME}?useSSL=false&serverTimezone=Europe/Madrid&allowPublicKeyRetrieval=true
+    #url: jdbc:mysql://${DB_HOST}/${DB_FILM_NAME}?useSSL=false&serverTimezone=Europe/Madrid&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/moviesactorsdb?useSSL=false&serverTimezone=Europe/Madrid&allowPublicKeyRetrieval=true
     username: root
-    password: root
+    password:
   jpa:
     generate-ddl: false
     properties:
@@ -19,13 +20,15 @@ server:
   port: 9003
 eureka:
   instance:
-    hostname: eureka-0
+    #hostname: eureka-0
+    hostname: localhost
     instance-id: ${spring.application.name}:${random.uuid}
     prefer-ip-address: true
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
+      #defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
+      defaultZone: http://localhost:8761/eureka
 
 
